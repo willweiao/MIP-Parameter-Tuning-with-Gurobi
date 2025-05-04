@@ -180,6 +180,5 @@ clean-repo/*
 
 # Ignore large generated files
 data/raw/*
-data/processed/*
-!data/processed/README.md
+
 
