@@ -1,0 +1,137 @@
+[
+  {
+    "MIPFocus": 1,
+    "Cuts": 0,
+    "Presolve": 0
+  },
+  {
+    "MIPFocus": 1,
+    "Cuts": 0,
+    "Presolve": 1
+  },
+  {
+    "MIPFocus": 1,
+    "Cuts": 0,
+    "Presolve": 2
+  },
+  {
+    "MIPFocus": 1,
+    "Cuts": 1,
+    "Presolve": 0
+  },
+  {
+    "MIPFocus": 1,
+    "Cuts": 1,
+    "Presolve": 1
+  },
+  {
+    "MIPFocus": 1,
+    "Cuts": 1,
+    "Presolve": 2
+  },
+  {
+    "MIPFocus": 1,
+    "Cuts": 2,
+    "Presolve": 0
+  },
+  {
+    "MIPFocus": 1,
+    "Cuts": 2,
+    "Presolve": 1
+  },
+  {
+    "MIPFocus": 1,
+    "Cuts": 2,
+    "Presolve": 2
+  },
+  {
+    "MIPFocus": 2,
+    "Cuts": 0,
+    "Presolve": 0
+  },
+  {
+    "MIPFocus": 2,
+    "Cuts": 0,
+    "Presolve": 1
+  },
+  {
+    "MIPFocus": 2,
+    "Cuts": 0,
+    "Presolve": 2
+  },
+  {
+    "MIPFocus": 2,
+    "Cuts": 1,
+    "Presolve": 0
+  },
+  {
+    "MIPFocus": 2,
+    "Cuts": 1,
+    "Presolve": 1
+  },
+  {
+    "MIPFocus": 2,
+    "Cuts": 1,
+    "Presolve": 2
+  },
+  {
+    "MIPFocus": 2,
+    "Cuts": 2,
+    "Presolve": 0
+  },
+  {
+    "MIPFocus": 2,
+    "Cuts": 2,
+    "Presolve": 1
+  },
+  {
+    "MIPFocus": 2,
+    "Cuts": 2,
+    "Presolve": 2
+  },
+  {
+    "MIPFocus": 3,
+    "Cuts": 0,
+    "Presolve": 0
+  },
+  {
+    "MIPFocus": 3,
+    "Cuts": 0,
+    "Presolve": 1
+  },
+  {
+    "MIPFocus": 3,
+    "Cuts": 0,
+    "Presolve": 2
+  },
+  {
+    "MIPFocus": 3,
+    "Cuts": 1,
+    "Presolve": 0
+  },
+  {
+    "MIPFocus": 3,
+    "Cuts": 1,
+    "Presolve": 1
+  },
+  {
+    "MIPFocus": 3,
+    "Cuts": 1,
+    "Presolve": 2
+  },
+  {
+    "MIPFocus": 3,
+    "Cuts": 2,
+    "Presolve": 0
+  },
+  {
+    "MIPFocus": 3,
+    "Cuts": 2,
+    "Presolve": 1
+  },
+  {
+    "MIPFocus": 3,
+    "Cuts": 2,
+    "Presolve": 2
+  }
+]
