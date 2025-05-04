@@ -1,0 +1,12 @@
+paths:
+  starter: data/raw/starter
+  starter_instances: data/instances/starter_instances.txt
+  solu: data/raw/miplib2017-v35.solu.txt
+  param_sets: data/params/param_sets.json
+  benchmark_csv: data/raw/The Benchmark Set.csv
+  output_csv: data/training_dataset_runtime.csv
+  model_instances: data/instances/model_instances.txt
+
+settings:
+  time_limit: 60
+  gap_threshold: 0.01

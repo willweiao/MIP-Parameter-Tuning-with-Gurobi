@@ -176,8 +176,6 @@ cython_debug/
 # .mps file
 *.mps
 *.mps.gz
-data/instances/*
-!data/instances/README.md
 clean-repo/*
 
 # Ignore large generated files

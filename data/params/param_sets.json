@@ -1,137 +1,142 @@
-[
-  {
+{
+  "0": {
+    "MIPFocus": 0,
+    "Cuts": -1,
+    "Presolve": -1
+  },
+  "1": {
     "MIPFocus": 1,
     "Cuts": 0,
     "Presolve": 0
   },
-  {
+  "2": {
     "MIPFocus": 1,
     "Cuts": 0,
     "Presolve": 1
   },
-  {
+  "3": {
     "MIPFocus": 1,
     "Cuts": 0,
     "Presolve": 2
   },
-  {
+  "4": {
     "MIPFocus": 1,
     "Cuts": 1,
     "Presolve": 0
   },
-  {
+  "5": {
     "MIPFocus": 1,
     "Cuts": 1,
     "Presolve": 1
   },
-  {
+  "6": {
     "MIPFocus": 1,
     "Cuts": 1,
     "Presolve": 2
   },
-  {
+  "7": {
     "MIPFocus": 1,
     "Cuts": 2,
     "Presolve": 0
   },
-  {
+  "8": {
     "MIPFocus": 1,
     "Cuts": 2,
     "Presolve": 1
   },
-  {
+  "9": {
     "MIPFocus": 1,
     "Cuts": 2,
     "Presolve": 2
   },
-  {
+  "10": {
     "MIPFocus": 2,
     "Cuts": 0,
     "Presolve": 0
   },
-  {
+  "11": {
     "MIPFocus": 2,
     "Cuts": 0,
     "Presolve": 1
   },
-  {
+  "12": {
     "MIPFocus": 2,
     "Cuts": 0,
     "Presolve": 2
   },
-  {
+  "13": {
     "MIPFocus": 2,
     "Cuts": 1,
     "Presolve": 0
   },
-  {
+  "14": {
     "MIPFocus": 2,
     "Cuts": 1,
     "Presolve": 1
   },
-  {
+  "15": {
     "MIPFocus": 2,
     "Cuts": 1,
     "Presolve": 2
   },
-  {
+  "16": {
     "MIPFocus": 2,
     "Cuts": 2,
     "Presolve": 0
   },
-  {
+  "17": {
     "MIPFocus": 2,
     "Cuts": 2,
     "Presolve": 1
   },
-  {
+  "18": {
     "MIPFocus": 2,
     "Cuts": 2,
     "Presolve": 2
   },
-  {
+  "19": {
     "MIPFocus": 3,
     "Cuts": 0,
     "Presolve": 0
   },
-  {
+  "20": {
     "MIPFocus": 3,
     "Cuts": 0,
     "Presolve": 1
   },
-  {
+  "21": {
     "MIPFocus": 3,
     "Cuts": 0,
     "Presolve": 2
   },
-  {
+  "22": {
     "MIPFocus": 3,
     "Cuts": 1,
     "Presolve": 0
   },
-  {
+  "23": {
     "MIPFocus": 3,
     "Cuts": 1,
     "Presolve": 1
   },
-  {
+  "24": {
     "MIPFocus": 3,
     "Cuts": 1,
     "Presolve": 2
   },
-  {
+  "25": {
     "MIPFocus": 3,
     "Cuts": 2,
     "Presolve": 0
   },
-  {
+  "26": {
     "MIPFocus": 3,
     "Cuts": 2,
     "Presolve": 1
   },
-  {
+  "27": {
     "MIPFocus": 3,
     "Cuts": 2,
     "Presolve": 2
   }
-]
+}
