@@ -63,15 +63,16 @@ def solve_instances(instances, param_sets, solu_dict, folder, time_limit, gap_th
                     obj = model.ObjVal
                     runtime = model.Runtime
                     gap = abs(obj - best_obj) / max(abs(best_obj), 1e-6)
-                    if gap <= gap_threshold:
-                        records.append({
-                            "instance": name,
-                            "param_id": int(param_id),
-                            "runtime": runtime,
-                            "objval": obj,
-                            "status": int(model.Status),
-                            "gap": gap
-                        })
+                    runtime_rec = runtime if gap <= gap_threshold else 3600
+                    
+                    records.append({
+                        "instance": name,
+                        "param_id": int(param_id),
+                        "runtime": runtime_rec,
+                        "objval": obj,
+                        "status": int(model.Status),
+                        "gap": gap
+                    })
             except Exception as e:
                 print(f"[ERROR!]{name} | param {param_id} failed: {e}")
     return pd.DataFrame(records)
