@@ -96,7 +96,7 @@ def main():
     benchmark_csv = config["PATHS"]["BENCHMARK_CSV"]
     starter_path = config["PATHS"]["STARTER_DIR"]
     starter_inst = config["PATHS"]["STARTER_INSTANCES"]
-    starter_output_csv = config["PATHS"]["OUTPUT_CSV"]
+    starter_output_csv = config["PATHS"]["STARTER_OUTPUT_CSV"]
     model_path = config["PATHS"]["MODEL_DIR"]
     model_inst = config["PATHS"]["MODEL_INSTANCES"] 
     model_output_csv = config["PATHS"]["MODEL_OUTPUT_CSV"]
