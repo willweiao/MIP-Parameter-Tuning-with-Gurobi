@@ -1,12 +1,14 @@
 PATHS:
+  BENCHMARK_FOLDER: data/raw/benchmark/
+  BENCHMARK_CSV: data/raw/The_Benchmark_Set.csv
+  SOLU: data/raw/miplib2017-v35.solu.txt
   STARTER_DIR: data/raw/starter
   STARTER_INSTANCES: data/instances/starter_instances.txt
-  SOLU: data/raw/miplib2017-v35.solu.txt
+  STARTER_OUTPUT_CSV: data/processed/starterdataset.csv
   PARAMS_SETS: data/params/param_sets.json
-  BENCHMARK_FOLDER: /data/raw/benchmark/
-  BENCHMARK_CSV: data/raw/The_Benchmark_Set.csv
-  OUTPUT_CSV: data/processed/modeldataset.csv
+  MODEL_DIR: data/raw/benchmark_solved
   MODEL_INSTANCES: data/instances/model_instances.txt
+  MODEL_OUTPUT_CSV: data/processed/modeldataset.csv
 
 SETTINGS:
   TIME_LIMITS: 60

@@ -91,12 +91,15 @@ def main():
     
     # ===CONFIGURATIONS===
     # paths config
+    param_set_path = config["PATHS"]["PARAMS_SETS"]
+    solu_path = config["PATHS"]["SOLU"]
+    benchmark_csv = config["PATHS"]["BENCHMARK_CSV"]
     starter_path = config["PATHS"]["STARTER_DIR"]
     starter_inst = config["PATHS"]["STARTER_INSTANCES"]
-    solu_path = config["PATHS"]["SOLU"]
-    param_set_path = config["PATHS"]["PARAMS_SETS"]
-    benchmark_csv = config["PATHS"]["BENCHMARK_CSV"]
-    output_csv = config["PATHS"]["OUTPUT_CSV"]
+    starter_output_csv = config["PATHS"]["OUTPUT_CSV"]
+    model_path = config["PATHS"]["MODEL_DIR"]
+    model_inst = config["PATHS"]["MODEL_INSTANCES"] 
+    model_output_csv = config["PATHS"]["MODEL_OUTPUT_CSV"]
 
     # settiings config
     time_limit = config["SETTINGS"]["TIME_LIMITS"]
@@ -105,12 +108,12 @@ def main():
     # feature cols
     FEATURE_COLS = config["FEATURE_COLS"]
 
-    instances = load_instances(starter_inst)
+    instances = load_instances(model_inst)
     df_features = load_benchmark_features(benchmark_csv, instances, FEATURE_COLS)
     solu_dict = load_solu_dict(solu_path, instances)
     param_sets = load_param_sets(param_set_path)
-    df_results = solve_instances(instances, param_sets, solu_dict, starter_path, time_limit, mip_gap)
-    build_training_dataset(df_results, df_features, FEATURE_COLS, output_csv)
+    df_results = solve_instances(instances, param_sets, solu_dict, model_path, time_limit, mip_gap)
+    build_training_dataset(df_results, df_features, FEATURE_COLS, model_output_csv)
 
 if __name__ == "__main__":
     main()
