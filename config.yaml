@@ -6,7 +6,7 @@ PATHS:
   STARTER_INSTANCES: data/instances/starter_instances.txt
   STARTER_OUTPUT_CSV: data/processed/starterdataset.csv
   PARAMS_SETS: data/params/param_sets.json
-  MODEL_DIR: data/raw/benchmark_solved
+  MODEL_DIR: data/raw/model
   MODEL_INSTANCES: data/instances/model_instances.txt
   MODEL_OUTPUT_CSV: data/processed/modeldataset.csv
 
