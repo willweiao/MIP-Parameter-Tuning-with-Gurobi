@@ -9,6 +9,7 @@ PATHS:
   MODEL_DIR: data/raw/model
   MODEL_INSTANCES: data/instances/model_instances.txt
   MODEL_OUTPUT_CSV: data/processed/modeldataset.csv
+  PARTIAL_DIR: data/processed/model_instance_chunks
 
 SETTINGS:
   TIME_LIMITS: 60

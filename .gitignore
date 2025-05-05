@@ -181,4 +181,12 @@ clean-repo/*
 # Ignore large generated files
 data/raw/*
 
+# Logs
+logs/*.txt
+!logs/.gitkeep
+
+# Intermediate results
+data/processed/solve_results/
+data/processed/model_instance_chunks/
+data/processed/modeldataset*.csv
 
