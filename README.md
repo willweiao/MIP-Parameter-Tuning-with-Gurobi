@@ -1,5 +1,7 @@
 # Gurobi with Parameter Tuning in MIP Problems
 
+The primary goal is to see if the gurobi default parameter settings are good enough for solving MIP problems, using MIPLIB Benchmark.
+
 03/05:
 Parameter Guidelines: https://docs.gurobi.com/projects/optimizer/en/current/concepts/parameters/guidelines.html
 Reference: https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html
