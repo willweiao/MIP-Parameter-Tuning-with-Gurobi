@@ -6,6 +6,8 @@ import pandas as pd
 from gurobipy import read, GRB
 from tqdm import tqdm
 from datetime import datetime
+from multiprocessing import Pool
+from functools import partial
 
 # ===FUNCTIONS===
 # logging file
@@ -65,6 +67,7 @@ def solve_single_instance(name, param_sets, solu_dict, model_folder, time_limit,
     for param_id, param in param_sets.items():
         try:
             model = read(filename)
+            model.setParam("Threads", 1)
             model.setParam("OutputFlag", 0)
             model.setParam("TimeLimit", time_limit)
             model.setParam("MIPGap", gap_threshold)
@@ -96,26 +99,41 @@ def solve_single_instance(name, param_sets, solu_dict, model_folder, time_limit,
     return records
 
 #
-def solve_instances_incremental(instances, param_sets, solu_dict, folder, time_limit, gap_threshold, output_dir):
+def solve_single_process(name, param_sets, solu_dict, model_folder, time_limit, gap_threshold, output_dir, log_path):
+    outfile = os.path.join(output_dir, f"{name}.csv")
+    if os.path.exists(outfile):
+        log_message(f"[SKIPPED] {name}.csv", log_path)
+        return
+
+    try:
+        results = solve_single_instance(name, param_sets, solu_dict, model_folder, time_limit, gap_threshold)
+        if results:
+            pd.DataFrame(results).to_csv(outfile, index=False)
+            log_message(f"[SUCCESS] {name}.csv ({len(results)} rows)", log_path)
+        else:
+            log_message(f"[EMPTY] {name}.csv", log_path)
+    except Exception as e:
+        log_message(f"[ERROR] {name}.csv - {str(e)}", log_path)
+
+#
+def solve_instances_incremental(instances, param_sets, solu_dict, folder, time_limit, gap_threshold, output_dir, num_workers):
     os.makedirs(output_dir, exist_ok=True)
     log_path = get_log_path()
     total_start = time.time()
 
-    for name in tqdm(instances):
-        outfile = os.path.join(output_dir, f"{name}.csv")
-        if os.path.exists(outfile):
-            log_message(f"[SKIPPED] {name}.csv", log_path)
-            continue
+    func = partial(
+        solve_single_process,
+        param_sets=param_sets,
+        solu_dict=solu_dict,
+        model_folder=folder,
+        time_limit=time_limit,
+        gap_threshold=gap_threshold,
+        output_dir=output_dir,
+        log_path=log_path
+    )
 
-        try:
-            results = solve_single_instance(name, param_sets, solu_dict, folder, time_limit, gap_threshold)
-            if results:
-                pd.DataFrame(results).to_csv(outfile, index=False)
-                log_message(f"[SUCCESS] {name}.csv ({len(results)} rows)", log_path)
-            else:
-                log_message(f"[EMPTY] {name}.csv", log_path)
-        except Exception as e:
-            log_message(f"[ERROR] {name}.csv - {str(e)}", log_path)
+    with Pool(num_workers) as pool:
+        pool.map(func, instances)
 
     total_time = time.time() - total_start
     log_message(f"[DONE] Solved {len(instances)} instances in {total_time:.1f} seconds.", log_path)
@@ -158,6 +176,7 @@ def main():
     # settiings config
     time_limit = config["SETTINGS"]["TIME_LIMITS"]
     mip_gap = config["SETTINGS"]["GAP_THRESHOLD"]
+    num_workers = config["SETTINGS"]["NUM_WORKERS"]
 
     # feature cols
     FEATURE_COLS = config["FEATURE_COLS"]
@@ -166,7 +185,7 @@ def main():
     df_features = load_benchmark_features(benchmark_csv, instances, FEATURE_COLS)
     solu_dict = load_solu_dict(solu_path, instances)
     param_sets = load_param_sets(param_set_path)
-    solve_instances_incremental(instances, param_sets, solu_dict, model_path, time_limit, mip_gap, partial_csv_dir)
+    solve_instances_incremental(instances, param_sets, solu_dict, model_path, time_limit, mip_gap, partial_csv_dir, num_workers)
     df_results = merge_instance_results(partial_csv_dir)
     build_training_dataset(df_results, df_features, FEATURE_COLS, model_output_csv)
 
