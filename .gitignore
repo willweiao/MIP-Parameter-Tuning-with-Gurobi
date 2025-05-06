@@ -188,5 +188,5 @@ logs/*.txt
 # Intermediate results
 data/processed/solve_results/
 data/processed/model_instance_chunks/
-data/processed/modeldataset*.csv
+
 
