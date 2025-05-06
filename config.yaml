@@ -12,7 +12,7 @@ PATHS:
   PARTIAL_DIR: data/processed/model_instance_chunks
 
 SETTINGS:
-  TIME_LIMITS: 100
+  TIME_LIMITS: 90
   GAP_THRESHOLD: 0.05
   NUM_WORKERS: 12
 
