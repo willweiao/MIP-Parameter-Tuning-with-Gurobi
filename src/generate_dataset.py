@@ -141,7 +141,7 @@ def solve_instances_incremental(instances, param_sets, solu_dict, folder, time_l
 #
 def build_training_dataset(df_results, df_features, feature_cols, output_path):
     df_merged = df_results.merge(df_features, on="instance", how="left")
-    df_final = df_merged[feature_cols + ["param_id", "runtime", "gap", "status", "objval"]]
+    df_final = df_merged[["instance"] + feature_cols + ["param_id", "runtime", "gap", "status", "objval"]]
     df_final.to_csv(output_path, index=False)
     print(f"Training dataset saved to {output_path} (rows: {len(df_final)})")
     return df_final
