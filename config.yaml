@@ -1,0 +1,25 @@
+PATHS:
+  BENCHMARK_FOLDER: data/raw/benchmark/
+  BENCHMARK_CSV: data/raw/The_Benchmark_Set.csv
+  SOLU: data/raw/miplib2017-v35.solu.txt
+  STARTER_DIR: data/raw/starter
+  STARTER_INSTANCES: data/instances/starter_instances.txt
+  STARTER_OUTPUT_CSV: data/processed/starterdataset.csv
+  PARAMS_SETS: data/params/param_sets.json
+  MODEL_DIR: data/raw/model
+  MODEL_INSTANCES: data/instances/model_instances.txt
+  MODEL_OUTPUT_CSV: data/processed/modeldataset.csv
+  PARTIAL_DIR: data/processed/model_instance_chunks
+
+SETTINGS:
+  TIME_LIMITS: 90
+  GAP_THRESHOLD: 0.05
+  NUM_WORKERS: 12
+
+FEATURE_COLS:
+  - VariablesVari.
+  - BinariesBina.
+  - IntegersInte.
+  - ContinuousCont.
+  - ConstraintsCons.
+  - Nonz.Nonz.
