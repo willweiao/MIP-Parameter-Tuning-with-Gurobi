@@ -26,24 +26,31 @@ class MLPRegressor(nn.Module):
         self.net = nn.Sequential(
             nn.Linear(input_dim, 64),
             nn.ReLU(),
-            nn.Linear(64, 64),
+            nn.Dropout(0.1),
+            nn.Linear(64, 32),
             nn.ReLU(),
-            nn.Linear(64, 1)
+            nn.Dropout(0.1),
+            nn.Linear(32, 1),
         )
 
     def forward(self, x):
         return self.net(x)
 
-def load_data(csv_path, feature_cols):
+def load_data(csv_path, feature_cols, allowed_categories=["Optimal", "Quasi-optimal"]):
     df = pd.read_csv(csv_path)
+    
+    # filter the allowed categories
+    df = df[df["solve_category"].isin(allowed_categories)].copy()
 
     # non-baseline params set (param_id ≠ 0)
     df = df[df["param_id"] != 0].copy()
 
     # One-hot encodding param_id
     df_onehot = pd.get_dummies(df["param_id"], prefix="param")
+
+    # concat datasets and targets
     X = pd.concat([df[feature_cols], df_onehot], axis=1).astype(np.float32)
-    y = df["runtime"].values.astype(np.float32)
+    y = np.log1p(df["runtime"].values.astype(np.float32))
 
     # Normalise scale
     scaler = StandardScaler()
@@ -54,11 +61,15 @@ def load_data(csv_path, feature_cols):
 
 # === TRAIN+VAL LOOP===
 def train_loop(model, train_loader, val_loader, optimizer, criterion,
-          epochs=50, device='cpu'):
+          epochs=100, device='cpu',early_stopping=True, patience=20, delta=1e-5,
+          save_path="../model/best_model.pt"):
 
     model.to(device)
     train_losses = []
     val_losses = []
+    
+    best_val_loss = float("inf")
+    patience_counter = 0
 
     for epoch in range(epochs):
         # === Training ===
@@ -90,6 +101,18 @@ def train_loop(model, train_loader, val_loader, optimizer, criterion,
         val_losses.append(avg_val_loss)
 
         print(f"[Epoch {epoch+1:02d}] Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f}")
+        
+        # === Early Stopping Check ===
+        if early_stopping:
+            if avg_val_loss < best_val_loss - delta:
+                best_val_loss = avg_val_loss
+                patience_counter = 0
+                torch.save(model.state_dict(), save_path) 
+            else:
+                patience_counter += 1
+                if patience_counter >= patience:
+                    print(f"Early stopping triggered at epoch {epoch+1}.")
+                    break
 
     return model, train_losses, val_losses
 
@@ -100,10 +123,14 @@ def evaluate_loop(model, loader, device='cpu', label="Test"):
     with torch.no_grad():
         for X_batch, y_batch in loader:
             X_batch = X_batch.to(device)
-            pred = model(X_batch).cpu().numpy()
-            y_true.extend(y_batch.numpy().flatten())
+            pred = torch.expm1(model(X_batch)).cpu().numpy()
+            y_true.extend(torch.expm1(y_batch).numpy().flatten())
             y_pred.extend(pred.flatten())
 
     print(f"\n {label} Set:")
     print("  MAE :", mean_absolute_error(y_true, y_pred))
     print("  R²  :", r2_score(y_true, y_pred))
+    
+    print("\nSample Predictions (first 10):")
+    for yt, yp in zip(y_true[:10], y_pred[:10]):
+        print(f"True: {yt:.2f} s | Pred: {yp:.2f} s | Δ = {abs(yt - yp):.2f}")
