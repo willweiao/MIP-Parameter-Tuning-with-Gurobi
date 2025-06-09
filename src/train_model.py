@@ -61,7 +61,7 @@ def load_data(csv_path, feature_cols, allowed_categories=["Optimal", "Quasi-opti
 
 # === TRAIN+VAL LOOP===
 def train_loop(model, train_loader, val_loader, optimizer, criterion,
-          epochs=100, device='cpu',early_stopping=True, patience=20, delta=1e-5,
+          epochs=100, device='cpu',early_stopping=True, patience=40, delta=1e-3,
           save_path="../model/best_model.pt"):
 
     model.to(device)
